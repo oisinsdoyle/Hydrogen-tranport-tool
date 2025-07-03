@@ -15,7 +15,8 @@ st.title("Hydrogen Pipeline Route Planner")
 # --- Load pipeline data ---
 @st.cache_resource
 def load_data():
-    file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
+    file_path = Hydrogen backbone map Transmission data.json
+    #file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
     pipelines = gpd.read_file(file_path)
     pipelines = pipelines.to_crs("EPSG:4326")
     return pipelines
