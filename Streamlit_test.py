@@ -113,6 +113,9 @@ elif input_mode == "Place name":
         start_lat = start_lon = end_lat = end_lon = None
 
 if st.sidebar.button("Find Route"):
+    # Save original user input locations
+    user_start = (start_lat, start_lon)
+    user_end = (end_lat, end_lon)
     start = snap_to_graph_node(start_lon, start_lat, node_list, node_tree)
     end = snap_to_graph_node(end_lon, end_lat, node_list, node_tree)
 
@@ -144,9 +147,31 @@ if st.sidebar.button("Find Route"):
         # --- Folium Map ---
         m = folium.Map(location=[start[1], start[0]], zoom_start=6)
         folium.GeoJson(pipelines, name="Pipelines", style_function=lambda x: {"color": "gray", "weight": 2}).add_to(m)
+
+        # Dotted line from user input to snapped node (start)
+        folium.PolyLine(
+            locations=[user_start, (start[1], start[0])],
+            color="blue",
+            weight=3,
+            opacity=0.7,
+            dash_array="5, 10",
+            tooltip="Snap to pipeline (start)"
+        ).add_to(m)
+        # Dotted line from user input to snapped node (end)
+        folium.PolyLine(
+            locations=[user_end, (end[1], end[0])],
+            color="blue",
+            weight=3,
+            opacity=0.7,
+            dash_array="5, 10",
+            tooltip="Snap to pipeline (end)"
+        ).add_to(m)
+
         folium.PolyLine(path_latlon, color="red", weight=5, opacity=0.8, tooltip="Shortest Path").add_to(m)
-        folium.Marker([start[1], start[0]], popup="Start", icon=folium.Icon(icon='play', prefix='fa', color='green')).add_to(m)
-        folium.Marker([end[1], end[0]], popup="End", icon=folium.Icon(icon='flag', prefix='fa', color='red')).add_to(m)
+        folium.Marker([start[1], start[0]], popup="Snapped Start", icon=folium.Icon(icon='play', prefix='fa', color='green')).add_to(m)
+        folium.Marker([end[1], end[0]], popup="Snapped End", icon=folium.Icon(icon='flag', prefix='fa', color='red')).add_to(m)
+        folium.Marker(user_start, popup="User Start", icon=folium.Icon(icon='user', prefix='fa', color='blue')).add_to(m)
+        folium.Marker(user_end, popup="User End", icon=folium.Icon(icon='user', prefix='fa', color='blue')).add_to(m)
 
         # Info box in corner
         info_html = f"""
