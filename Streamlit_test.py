@@ -189,7 +189,7 @@ if st.sidebar.button("Find Route"):
             box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
         ">
             <b>Total distance:</b> {distance:.2f} km<br>
-            <b>Estimated cost:</b> €{price}/kg (2040 EHB)<br>
+            <b>Estimated transport cost:</b> €{price}/kg (2040 EHB)<br>
             <b>Route available from:</b> {route_available_year}
         </div>
         """
