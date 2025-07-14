@@ -82,7 +82,7 @@ def snap_to_graph_node(lon, lat, node_list, tree):
 
 # --- User input ---
 
-# ... (your other imports and code) ...
+
 
 st.sidebar.header("Input Coordinates or Place Name")
 
