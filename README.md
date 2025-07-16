@@ -72,19 +72,20 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - `geopandas` – For geospatial data handling
 - `shapely` – Geometry operations
 - `networkx` – Graph construction and routing
-- `folium` – Interactive map visualization
+- `folium` – Interactive map visualisation
 - `geopy` – Geocoding and distance utilities
-- `scipy.spatial.cKDTree` – Efficient nearest-neighbor search
+- `scipy.spatial.cKDTree` – nearest-neighbor search
 
 ---
 
 ## 7. Known Limitations and Assumptions
 
-- Only supports locations that can be snapped to the existing EHB pipeline network  
-- Place names must be sufficiently clear to be correctly geocoded  
-- Cost estimates are based on generalized €/kg/km assumptions (can be adjusted)  
-- Commissioning year is assumed accurate based on available metadata in GeoJSON  
-- Last-mile transport or off-network segments are not currently modeled  
+- Snapping function to overcome gaps in the pipeline data results in accuracies in the routing where the route doesn't exactly follow the pipeline co-ordinates
+- Only supports locations that can be snapped to the EHB pipeline network  
+- Place names must be sufficiently clear to be correctly geocoded.  
+- Cost estimates are based on generalized €/kg/km assumption from the EHB estimate of onshore pipelines for 2040 ( highest estimate of the range of €0.22kg/1000km taken, can be adjusted)  
+- Commissioning year is assumed accurate based on available metadata in GeoJSON from infrastructure map, could be subsuquent delays announced. 
+- Last-mile transport or off-network segments are not currently modelled  
 
 ---
 
@@ -92,7 +93,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 
 - Add support for last-mile transport using road or rail network models  
 - Include interactive cost parameter settings (e.g., €/km values)  
-- Improve robustness for ambiguous or poorly geocoded place names  
+- Improve robustness for ambiguous or poorly geocoded place names / include select on map feature  
 - Integrate pipeline construction costs for hypothetical extensions  
 - Incorporate modules for hydrogen production and purification costing  
   (potentially as part of a broader end-to-end hydrogen costing tool)  
