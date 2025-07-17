@@ -1,6 +1,6 @@
 # Hydrogen Pipeline Route Planner
 
-Python-based interactive tool to estimate the transport cost of hydrogen between two locations in Europe using the European Hydrogen Backbone (EHB) pipeline network. The tool uses real pipeline infrastructure data to calculate distances, estimate transport costs, and visualize the route on an interactive map.
+Python-based interactive tool to estimate the transport cost of hydrogen between two locations in Europe using the European Hydrogen Backbone (EHB) pipeline network. The tool uses projected pipeline infrastructure data to calculate distances, estimate transport costs, and visualise the route on a detailed map.
 
 The tool is hosted on streamlit available at this link https://hydrogen-tranport-tool.streamlit.app/
 
