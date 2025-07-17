@@ -92,7 +92,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 ## 8. Future Improvements
 
 - Add support for last-mile transport using road or rail network models  
-- Include interactive cost parameter settings (e.g., €/km values)  
+- Include more detailed cost parameter settings, account for different pipeline types, cross border fees etc  
 - Improve robustness for ambiguous or poorly geocoded place names / include select on map feature  
 - Integrate pipeline construction costs for hypothetical extensions  
 - Incorporate modules for hydrogen production and purification costing  
