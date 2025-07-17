@@ -52,7 +52,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - The app geocodes place names (via Nominatim) or uses raw coordinates  
 
 **Processing**  
-- Snap points to the nearest node on the pipeline network  
+- Finds nearest point on the pipeline network the given location
 - Build shortest path using Dijkstra’s algorithm on the graph  
 - Estimate total distance and cost (€/kg)  
 - Extract latest commissioning year from route segments  
