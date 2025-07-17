@@ -108,5 +108,4 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
   (GeoJSON extracted via ArcGIS API)
 
 - Geocoding and City Location Data:  
-  https://simplemaps.com/data/world-cities  
   https://nominatim.openstreetmap.org/
