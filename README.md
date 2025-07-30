@@ -28,7 +28,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 
 - Parsed and processed EHB pipeline data (GeoJSON format)
 - Created a graph representation of the pipeline network
-- Implemented nearest-node snapping for input locations
+- Implemented nearest-node snapping for input locations using Kdtree nearest neighbour processing
 - Built functionality to compute shortest route using NetworkX
 - Integrated transport cost estimation based on distance
 - Developed interactive map using Folium and Streamlit
@@ -38,7 +38,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 
 ## 4. Project Structure
 
-- `app.py` – Main Streamlit application
+- `streamlit_test.py` – Main Streamlit application
 - `Hydrogen backbone map Transmission data.json` – EHB pipeline GeoJSON data
 - `requirements.txt` – Python dependencies
 - `README.md` – This documentation file
