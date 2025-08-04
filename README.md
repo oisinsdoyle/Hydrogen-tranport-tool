@@ -27,7 +27,15 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 ## 3. Work Completed
 
 - Parsed and processed EHB pipeline data (GeoJSON format)
-- Created a graph representation of the pipeline network
+    - This was completed using the ArcGIS Rest API for the Infrastructure map website, the API directory for the map can be accessed at this link https://services9.arcgis.com/xSsJeibXqRtsnmY7/arcgis/rest/services/Hydrogen_Infrastructure_Map_2024Q4_WFL1/FeatureServer
+    - The following guide was used to find this directory https://www.reddit.com/r/ArcGIS/comments/1e3xp14/arcgis_map_scraping/
+    - The transmission GeoJSON data was extracted by selecting the transmission layer, selecting "query" at the bottom of the page then submitting a GeoJSON query request.
+    - the following values were applied to the query to return all of the transmission geometry: "Where"-"1=1", "Out Fields" - "*", "Return Geometry" - "True", "SQL Format" - "none", "Format" - "GeoJSON"
+- Created a graph representation of the pipeline network with nearby coordinates snapped together to solve disconnection issues
+    - Converting the network into a graph where each coordinate is defined as a node and the pipeline sections between each coordinate are defined as an edge allows for the use of Dijkstra's algorithm to find the optimal path between two points along the network. [A short introduction to graph theory](https://medium.com/basecs/a-gentle-introduction-to-graph-theory-77969829ead8)
+    - To generate the graph, the geometry of each pipeline in the network is looped through, rounded and added to an array, this is completed for both LineString and Multilinestring data.
+    - To snap nearby coordinates together to one reference coordinate, a tree is defined using the cKDTree library with this array as an input, a threshold of 0.11 degrees is set which correlates to approximately 12km that defines how close coordinates have to be to be snapped together.
+    - 
 - Implemented nearest-node snapping for input locations using Kdtree nearest neighbour processing
 - Built functionality to compute shortest route using NetworkX
 - Integrated transport cost estimation based on distance
