@@ -100,7 +100,6 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 ## 7. Known Limitations and Assumptions
 
 - Snapping function to overcome gaps in the pipeline data results in accuracies in the routing where the route doesn't exactly follow the pipeline co-ordinates
-- Only supports locations that can be snapped to the EHB pipeline network  
 - Place names must be sufficiently clear to be correctly geocoded.  
 - Cost estimates are based on generalized €/kg/km assumption from the EHB estimate of onshore pipelines for 2040 ( highest estimate of the range of €0.22kg/1000km taken, can be adjusted)  
 - Commissioning year is assumed accurate based on available metadata in GeoJSON from infrastructure map, could be subsuquent delays announced. 
