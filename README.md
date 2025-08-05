@@ -61,7 +61,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 ## 5. How the Tool Works
 **Running the tool**
 - To run the tool, the streamlit app can be run locally via command line using using "streamlit run "file path""
-
+- The tool can also be hosted through the Streamlit web platform by deploying the app to Streamlit Community Cloud, allowing it to be accessed and used via a public URL.
 **Configuration**
 - **Pipeline cost per km**
 - **Snapping Threshold**
