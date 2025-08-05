@@ -108,10 +108,10 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 ---
 
 ## 8. Future Improvements
-- Improve pipeline feature overcoming gaps in pipeline data to result in a more accurate routing system, network data could potentially be fixed manually or a more sophisticated function used to interpolate between points 
+- Improve pipeline feature overcoming gaps in pipeline data to result in a more accurate routing system, network data could potentially be fixed manually or threshold could be tweaked to have a more accurate connection between points
 - Add support for last-mile transport using road and potentially rail network models
 - add support for ship transport and expand beyond europe 
-- Include more detailed cost parameter settings, account for different pipeline types, cross border fees etc  
+- Include more detailed cost parameter settings, account for different pipeline types, cross border fees etc.  
 - Improve robustness for ambiguous or poorly geocoded place names / include select on map feature  
 - Integrate pipeline construction costs for hypothetical extensions  
 - Incorporate modules for hydrogen production and purification costing  
