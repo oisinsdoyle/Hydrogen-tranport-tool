@@ -23,7 +23,28 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - Display results using an embedded Folium map in a Streamlit web app
 
 ---
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 ## 3. Work Completed
 
 - Parsed and processed EHB pipeline data (GeoJSON format)
@@ -81,6 +102,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - Names of the pipeline segments used  
 
 ---
+
 
 ## 6. Technologies and Libraries Used
 
