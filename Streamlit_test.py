@@ -9,45 +9,49 @@ from scipy.spatial import cKDTree
 import folium
 from geopy.geocoders import Nominatim
 
+#streamlit intialisation
 st.set_page_config(layout="wide")
 st.title("Hydrogen Pipeline Route Planner")
 
 # --- Load pipeline data ---
-@st.cache_resource
+@st.cache_resource# cache the output after first run so this function is not run unnecessarily during use of the tool
 def load_data():
-    file_path = "Hydrogen backbone map Transmission data.json"
-    #file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
-    pipelines = gpd.read_file(file_path)
-    pipelines = pipelines.to_crs("EPSG:4326")
+    #file_path = "Hydrogen backbone map Transmission data.json" #GeoJSON file extracted from hydrogen infrastructure map transmission data
+    file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
+    pipelines = gpd.read_file(file_path) #Read in file and set to pipelines
+    pipelines = pipelines.to_crs("EPSG:4326")# define coordinate system as WGS 84 i.e latitude and longitude coordinates
     return pipelines
 
 pipelines = load_data()
 
 # --- Build the graph (snapping) ---
-@st.cache_resource
-def build_graph(_pipelines, threshold=0.11):
-    pipelines = _pipelines
-    all_coords = set()
-    for _, row in pipelines.iterrows():
-        geom = row['geometry']
-        if isinstance(geom, LineString):
-            coords = [tuple(round(c, 6) for c in pt) for pt in geom.coords]
-            all_coords.update(coords)
-        elif isinstance(geom, MultiLineString):
+@st.cache_resource# cache output of network graph as it is does not change during use of the tool
+def build_graph(_pipelines, threshold=0.11):# input GeoJSON data and threshold for snapping of coordinates, 0.11 is slightly high and causes some issues however going much lower can exclude aspects of the map
+    pipelines = _pipelines# required an underscore to run
+    all_coords = set()# define coordinate set
+    for _, row in pipelines.iterrows():# runs through each row in the data
+        geom = row['geometry']# setting variable for geometry row which holds the coordinate data for each feature
+        if isinstance(geom, LineString):# If line string type, the coordinates can be directly compiled
+            coords = [tuple(round(c, 6) for c in pt) for pt in geom.coords]# rounding as too many decimals in the coordinate data was causing issues
+            all_coords.update(coords)# update coords
+        elif isinstance(geom, MultiLineString):# If Multilinestring, have to run through each line to access all coordinates seperately
             for line in geom.geoms:
-                coords = [tuple(round(c, 6) for c in pt) for pt in line.coords]
-                all_coords.update(coords)
-    all_coords = list(all_coords)
-    coord_array = np.array(all_coords)
-    tree = cKDTree(coord_array)
-    snapped = {}
+                coords = [tuple(round(c, 6) for c in pt) for pt in line.coords]# round for simplicity
+                all_coords.update(coords)# update coords
+    all_coords = list(all_coords)#define coords as list to order components 
+    coord_array = np.array(all_coords)#define as array as cKDTree requires array as input
+    tree = cKDTree(coord_array)# define CKDtree to use nearest neighbour feature
+    snapped = {} # define dictionary to hold snapped coordinates
+    
+    #--------------------------------------- loop runs through coordinates snapping nearby coordinates within threshold together
     for idx, coord in enumerate(all_coords):
         if coord in snapped:
             continue
         idxs = tree.query_ball_point(coord, threshold)
-        canonical = all_coords[idx]
+        ref = all_coords[idx]
         for i in idxs:
-            snapped[all_coords[i]] = canonical
+            snapped[all_coords[i]] = ref
+    
     G = nx.Graph()
     for _, row in pipelines.iterrows():
         geom = row['geometry']
@@ -64,7 +68,7 @@ def build_graph(_pipelines, threshold=0.11):
                     start, end = coords[i], coords[i+1]
                     dist = geodesic((start[1], start[0]), (end[1], end[0])).km
                     G.add_edge(start, end, weight=dist)
-    # Keep only the largest connected component
+    # Keep only the largest connected component, this is done to avoid isolated fragments of the network which were causing issues with the shortest path algorithm
     largest_cc = max(nx.connected_components(G), key=len)
     G = G.subgraph(largest_cc).copy()
     return G
