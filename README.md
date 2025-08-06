@@ -23,28 +23,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - Display results using an embedded Folium map in a Streamlit web app
 
 ---
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 ## 3. Work Completed
 
 - Parsed and processed EHB pipeline data (GeoJSON format)
@@ -77,13 +56,9 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 - `requirements.txt` – Python dependencies
 - `README.md` – This documentation file
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 ---
+
 ## 5. How the Tool Works
 **Running the tool**
 - To run the tool, the streamlit app can be run locally via command line using using "streamlit run "file path""
