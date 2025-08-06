@@ -201,6 +201,7 @@ if st.sidebar.button("Find Route"):
 
         # Display map
         folium_static = st.components.v1.html(m._repr_html_(), height=600)
+        folium_static(m, width=1000, height=600)
 
         # Display details
         st.subheader("Route Details")
