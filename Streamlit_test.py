@@ -16,8 +16,8 @@ st.title("Hydrogen Pipeline Route Planner")
 # --- Load pipeline data ---
 @st.cache_resource# cache the output after first run so this function is not run unnecessarily during use of the tool
 def load_data():
-    #file_path = "Hydrogen backbone map Transmission data.json" #GeoJSON file extracted from hydrogen infrastructure map transmission data
-    file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
+    file_path = "Hydrogen backbone map Transmission data.json" #GeoJSON file extracted from hydrogen infrastructure map transmission data
+    #file_path = r"C:\Users\Oisín\OneDrive - National University of Ireland, Galway\Documents\Desktop\Hydrogen-Costing-Tool-python\Transport\Hydrogen backbone map Transmission data.json"
     pipelines = gpd.read_file(file_path) #Read in file and set to pipelines
     pipelines = pipelines.to_crs("EPSG:4326")# define coordinate system as WGS 84 i.e latitude and longitude coordinates
     return pipelines
