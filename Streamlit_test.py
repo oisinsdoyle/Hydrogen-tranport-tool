@@ -200,8 +200,8 @@ if st.sidebar.button("Find Route"):
         m.get_root().html.add_child(folium.Element(info_html))
 
         # Display map
-        folium_static = st.components.v1.html(m._repr_html_(), height=600)
-        folium_static(m, width=1000, height=600)
+        folium_static = st.components.v1.html(m._repr_html_(), height=800, width=1000)
+        
 
         # Display details
         st.subheader("Route Details")
