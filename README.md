@@ -62,10 +62,7 @@ This tool focuses on the transportation segment of the hydrogen supply chain. It
 **Running the tool**
 - To run the tool, the streamlit app can be run locally via command line using using "streamlit run "file path""
 - The tool can also be hosted through the Streamlit web platform by deploying the app to Streamlit Community Cloud, allowing it to be accessed and used via a public URL.
-**Configuration**
-- **Pipeline cost per km**
-- **Snapping Threshold**
-- **GeoJSON data path**
+
 **Input**  
 - Origin and destination: entered as city/place names or decimal latitude/longitude  
 - The app geocodes place names (via Nominatim) or uses raw coordinates  
