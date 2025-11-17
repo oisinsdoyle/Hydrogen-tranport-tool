@@ -102,7 +102,7 @@ if input_mode == "Coordinates":
     end_lat = st.sidebar.number_input("End Latitude", value=49.199370, format="%.6f")
     end_lon = st.sidebar.number_input("End Longitude", value=6.674622, format="%.6f")
 elif input_mode == "Place name":
-    geolocator = Nominatim(user_agent="hydrogen_route_planner")
+    geolocator = Nominatim(user_agent="hydrogen_route_plan")
     start_place = st.sidebar.text_input("Start Place Name", value="Rotterdam")
     end_place = st.sidebar.text_input("End Place Name", value="Luxembourg")
     start_location = geolocator.geocode(start_place)
@@ -214,3 +214,4 @@ if st.sidebar.button("Find Route"):
 
     except nx.NetworkXNoPath:
         st.error("No path found between the selected nodes.")
+
